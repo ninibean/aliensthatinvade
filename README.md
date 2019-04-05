@@ -58,9 +58,9 @@ All of the animated objects of the game are placed  and manipulated in this Pane
 
 ![ActionPane](./img/ActionPane.png)
 
-### _Movable_ (Interface)
+### _Moveable_ (Interface)
 
-![Movable UML](./img/Movable.png)
+![Movable UML](./img/Moveable.png)
 
 ### GamePane
 
