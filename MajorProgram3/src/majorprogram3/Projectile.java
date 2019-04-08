@@ -10,5 +10,6 @@ package majorprogram3;
  * @author patte
  */
 public class Projectile {
+    //empty for the sake of not creating an error
     
 }

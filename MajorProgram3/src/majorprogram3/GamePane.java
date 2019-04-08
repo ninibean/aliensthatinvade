@@ -22,16 +22,18 @@ public class GamePane extends BorderPane {
         this.setCenter(actionPane);
         
         cmdCenter = new CmdCenter(actionPane);
-//        cmdCenter.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent event) {
-//                switch (event.getCode()) {
-//                    case LEFT: cmdCenter.relocate(cmdCenter.getLayoutX()-5, cmdCenter.getLayoutY()); break;
-//                    case RIGHT: cmdCenter.relocate(cmdCenter.getLayoutX()+5, cmdCenter.getLayoutY()); break;
-//                }
-//            }
-//            
-//        });
+////        cmdCenter.setOnKeyPressed(new EventHandler<KeyEvent>() {
+////            @Override
+////            public void handle(KeyEvent event) {
+////                switch (event.getCode()) {
+////                    case LEFT: cmdCenter.relocate(cmdCenter.getLayoutX() - 5, cmdCenter.getLayoutY()); break;
+////                    case RIGHT: cmdCenter.relocate(cmdCenter.getLayoutX() + 5, cmdCenter.getLayoutY()); break;
+//                      // ADD CASE FOR SPACE
+                        // 
+////                }
+////            }
+////            
+////        });
     }
     
 }

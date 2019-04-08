@@ -34,6 +34,7 @@ public class MajorProgram3 extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
+        // gamePane.requestFocus();
 //        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 //            @Override
 //            public void handle(KeyEvent event) {
