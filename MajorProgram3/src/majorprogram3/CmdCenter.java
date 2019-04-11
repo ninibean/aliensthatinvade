@@ -20,7 +20,7 @@ public class CmdCenter extends GameObject {
     public CmdCenter(ActionPane actionPane) {
         //Read in the entire sprite sheet from disk.
         try {
-            Image cmdCenter = new Image(new FileInputStream("C:/Users/patte/Documents/CS Code and Projects/spritesheet.jpg"));
+            Image cmdCenter = new Image(new FileInputStream("img/spritesheet.jpg"));
             this.setImage(cmdCenter);
         } catch (java.io.FileNotFoundException ex) {
             System.err.println(ex.getMessage());

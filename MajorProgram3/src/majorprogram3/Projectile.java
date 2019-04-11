@@ -11,5 +11,5 @@ package majorprogram3;
  */
 public class Projectile {
     //empty for the sake of not creating an error
-    
+        
 }
