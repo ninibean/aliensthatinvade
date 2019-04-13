@@ -22,18 +22,51 @@ public class GamePane extends BorderPane {
         this.setCenter(actionPane);
         
         cmdCenter = new CmdCenter(actionPane);
+        this.setOnKeyPressed(new MyCmdHandler());
 //        this.setOnKeyPressed(new EventHandler<KeyEvent>() {
 //            @Override
 //            public void handle(KeyEvent event) {
 //                switch (event.getCode()) {
-//                    case LEFT: cmdCenter.relocate(cmdCenter.getLayoutX() - 5, cmdCenter.getLayoutY()); break;
-//                    case RIGHT: cmdCenter.relocate(cmdCenter.getLayoutX() + 5, cmdCenter.getLayoutY()); break;
-//                       //ADD CASE FOR SPACE
-//                         
+//                    case LEFT: 
+//                        System.out.println("Left key pressed");
+//                        cmdCenter.move(); 
+//                        break;
+//                    case RIGHT:
+//                        System.out.println("Right key pressed");
+//                        cmdCenter.move();
+//                        break;
+//                    case SPACE:
+//                        System.out.println("Space key pressed");
+//                        cmdCenter.fireProjectile();
+//                        break;
 //                }
 //            }
 //            
 //        });
     }
     
+    
+    public class MyCmdHandler implements EventHandler<KeyEvent> {
+        @Override
+        public void handle(KeyEvent event) {
+            //CmdCenter cmd = (CmdCenter) event.getSource();
+            switch (event.getCode()) {
+                    case LEFT: 
+                        //System.out.println("Left key pressed");
+                        cmdCenter.move(); 
+                        System.out.println("L");
+                        break;
+                    case RIGHT:
+                        //System.out.println("Right key pressed");
+                        cmdCenter.move();
+                        System.out.println("R");
+                        break;
+                    case SPACE:
+                        //System.out.println("Space key pressed");
+                        cmdCenter.fireProjectile();
+                        System.out.println("S");
+                        break;   
+            }
+        }
+    }
 }

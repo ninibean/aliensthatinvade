@@ -17,7 +17,7 @@ public class ActionPane extends Pane {
     public ActionPane() {
         this.setWidth(550);
         this.setHeight(600);
-        cmdCenter = new CmdCenter(this);
-        this.getChildren().add(cmdCenter);
+       cmdCenter = new CmdCenter(this);
+       this.getChildren().add(cmdCenter);
     }
 }

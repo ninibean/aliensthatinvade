@@ -47,7 +47,22 @@ public class CmdCenter extends GameObject {
 
     @Override
     public void move() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double myWidth = this.getBoundsInParent().getMaxX() - this.getBoundsInParent().getMinX();
+        double newX = 0.0;
+        
+        if (this.getDirection() == 0.0) {
+            newX = this.getX() + this.getSpeed();
+        } else {
+            newX = this.getX() - this.getSpeed();
+        }
+        
+        if (newX < 0) {
+            this.setX(1);
+        } else if (newX + myWidth > this.getParentWidth() ) {
+            this.setX(this.getParentWidth() - myWidth);
+        } else {
+            this.setX(newX);
+        }
     }
 
 }
