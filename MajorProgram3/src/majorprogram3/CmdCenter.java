@@ -48,7 +48,7 @@ public class CmdCenter extends GameObject {
     @Override
     public void move() {
         double myWidth = this.getBoundsInParent().getMaxX() - this.getBoundsInParent().getMinX();
-        double newX = 0.0;
+        double newX = 1.0;
         
         if (this.getDirection() == 0.0) {
             newX = this.getX() + this.getSpeed();

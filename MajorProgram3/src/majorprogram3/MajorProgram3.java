@@ -24,16 +24,18 @@ public class MajorProgram3 extends Application {
     private CmdCenter cmdCenter;
     @Override
     public void start(Stage primaryStage) {
-        GamePane root = new GamePane();
+        GamePane gamePane = new GamePane();
         //root.getChildren().add(btn);
         
-        Scene scene = new Scene(root, 500, 500);
-        root.setStyle("-fx-background-color: black;");
+        Scene scene = new Scene(gamePane, 500, 500);
+        gamePane.setStyle("-fx-background-color: black;");
         
         primaryStage.setTitle("Aliens that Invade");
         primaryStage.setScene(scene);
         primaryStage.show();
         
+        
+        gamePane.requestFocus();
         // gamePane.requestFocus();
 //        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 //            @Override

@@ -5,6 +5,7 @@
  */
 package majorprogram3;
 
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 
 /**
