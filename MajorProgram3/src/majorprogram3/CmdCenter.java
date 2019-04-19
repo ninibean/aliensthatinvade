@@ -18,7 +18,7 @@ public class CmdCenter extends GameObject {
     
 
     public CmdCenter(ActionPane actionPane) {
-        //Read in the entire sprite sheet from disk.
+        //Read  in the entire sprite sheet from disk.
         try {
             Image cmdCenter = new Image(new FileInputStream("img/spritesheet.jpg"));
             this.setImage(cmdCenter);
@@ -33,9 +33,13 @@ public class CmdCenter extends GameObject {
         this.setViewport(viewportRect);
         setParentWidth(actionPane.getPrefWidth());
         setParentHeight(actionPane.getPrefHeight());
-        this.setX(getParentWidth() + 240); //Left-most: 10; center: 240; right-most: 470
-        this.setY(getParentHeight() +480);
+        //this.setX(getParentWidth() + 240); //Left-most: 10; center: 240; right-most: 470
+        //this.setY(getParentHeight() +480);
+        this.setX(240);
+        this.setY(480);
+        actionPane.getChildren().add(this);
     }
+    
     
     public void fireProjectile() {
         
@@ -47,22 +51,28 @@ public class CmdCenter extends GameObject {
 
     @Override
     public void move() {
-        double myWidth = this.getBoundsInParent().getMaxX() - this.getBoundsInParent().getMinX();
-        double newX = 1.0;
-        
-        if (this.getDirection() == 0.0) {
-            newX = this.getX() + this.getSpeed();
-        } else {
-            newX = this.getX() - this.getSpeed();
-        }
-        
-        if (newX < 0) {
-            this.setX(1);
-        } else if (newX + myWidth > this.getParentWidth() ) {
-            this.setX(this.getParentWidth() - myWidth);
-        } else {
-            this.setX(newX);
-        }
+//        double myWidth = this.getBoundsInParent().getMaxX() - this.getBoundsInParent().getMinX();
+//        double newX = 0.0;
+//        double speed = 5;
+//        
+//        if (this.getDirection() == 0.0) {
+//            newX = this.getX() + this.getSpeed();
+//        } else {
+//            newX = this.getX() - this.getSpeed();
+//        }
+//        
+//        if (newX < 0) {
+//            this.setX(1);
+//        } else if (newX + myWidth > this.getParentWidth() ) {
+//            this.setX(this.getParentWidth() - myWidth);
+//        } else {
+//            this.setX(newX);
+//        }
+        //speed = 5;
+        double newX = this.getX() + getSpeed() * Math.cos(Math.toRadians(getDirection()));
+        double newY = this.getY() + getSpeed() * Math.sin(Math.toRadians(getDirection())) ;
+        this.setX(newX);
+        this.setY(newY);
     }
 
 }

@@ -18,10 +18,10 @@ public abstract class GameObject extends ImageView implements Movable {
     private double parentHeight;  //height of the enclosing container
     
     public GameObject() {
-        direction = 0.0;
-        speed = 0.0;
-        parentWidth = 0.0;
-        parentHeight = 0.0;
+        //direction = 0.0;
+        //speed = 0.0;
+        //parentWidth = 0.0;
+        //parentHeight = 0.0;
     }
      public GameObject(double direction, double speed, double parentWidth, double parentHeight) {
          this.direction = direction;

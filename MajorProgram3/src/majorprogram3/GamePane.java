@@ -19,30 +19,13 @@ public class GamePane extends BorderPane {
     
     public GamePane() {
         actionPane = new ActionPane();
-        this.setCenter(actionPane);
+       // this.setCenter(actionPane);
         
         cmdCenter = new CmdCenter(actionPane);
-        this.setOnKeyPressed(new MyCmdHandler());
-//        this.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent event) {
-//                switch (event.getCode()) {
-//                    case LEFT: 
-//                        System.out.println("Left key pressed");
-//                        cmdCenter.move(); 
-//                        break;
-//                    case RIGHT:
-//                        System.out.println("Right key pressed");
-//                        cmdCenter.move();
-//                        break;
-//                    case SPACE:
-//                        System.out.println("Space key pressed");
-//                        cmdCenter.fireProjectile();
-//                        break;
-//                }
-//            }
-//            
-//        });
+        
+        MyCmdHandler mch = new MyCmdHandler();
+        this.setOnKeyPressed(mch);
+        this.getChildren().add(actionPane);
     }
     
     
@@ -53,11 +36,15 @@ public class GamePane extends BorderPane {
             switch (event.getCode()) {
                     case LEFT: 
                         //System.out.println("Left key pressed");
+                        cmdCenter.setSpeed(15);
+                        cmdCenter.setDirection(180);
                         cmdCenter.move(); 
                         System.out.println("L");
                         break;
                     case RIGHT:
                         //System.out.println("Right key pressed");
+                        cmdCenter.setSpeed(15);
+                        cmdCenter.setDirection(0);
                         cmdCenter.move();
                         System.out.println("R");
                         break;
@@ -65,7 +52,9 @@ public class GamePane extends BorderPane {
                         //System.out.println("Space key pressed");
                         cmdCenter.fireProjectile();
                         System.out.println("S");
-                        break;   
+                        break;
+                    default:
+                        break;
             }
         }
     }

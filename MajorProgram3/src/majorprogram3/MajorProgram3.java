@@ -21,14 +21,14 @@ import javafx.stage.Stage;
  */
 public class MajorProgram3 extends Application {
     
-    private CmdCenter cmdCenter;
+   // private CmdCenter cmdCenter;
     @Override
     public void start(Stage primaryStage) {
         GamePane gamePane = new GamePane();
         //root.getChildren().add(btn);
         
         Scene scene = new Scene(gamePane, 500, 500);
-        gamePane.setStyle("-fx-background-color: black;");
+        //gamePane.setStyle("-fx-background-color: black;");
         
         primaryStage.setTitle("Aliens that Invade");
         primaryStage.setScene(scene);
