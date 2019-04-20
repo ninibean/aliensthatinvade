@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
  * @author patte
  */
 public class CmdCenter extends GameObject {
-    private Projectile projectile;
+     Projectile projectile;
     
 
     public CmdCenter(ActionPane actionPane) {
@@ -26,6 +26,8 @@ public class CmdCenter extends GameObject {
             System.err.println(ex.getMessage());
             System.exit(-1);
         }
+        
+        projectile = new Projectile(actionPane);
         
         Rectangle2D viewportRect = new Rectangle2D(219, 180, 24, 17);
         this.setScaleX(1.5);
@@ -42,11 +44,14 @@ public class CmdCenter extends GameObject {
     
     
     public void fireProjectile() {
-        
+        projectile.setVisible(true);
+        projectile.move();
+        projectile.setX(this.getX());
+        projectile.setY(this.getY()-30);
     }
     
     public Projectile getProjectile() {
-        return null;
+        return projectile;
     }
 
     @Override
