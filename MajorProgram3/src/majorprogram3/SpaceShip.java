@@ -17,13 +17,13 @@ import javax.management.timer.Timer;
  * @author patte
  */
 public class SpaceShip extends Invader {
-    private moveTimer moveTimer; //ship movement
+   // private moveTimer moveTimer; //ship movement
     private Timer launchTimer; //when the ship is launhed
     private GamePane gamePane;
     private Random rand = new Random();
     
     public SpaceShip() {
-        moveTimer = new moveTimer();
+        //moveTimer = new moveTimer();
         try {
             Image spaceShip = new Image(new FileInputStream("img/spritesheet.jpg"));
             this.setImage(spaceShip);
@@ -43,8 +43,9 @@ public class SpaceShip extends Invader {
         //this.setX(getParentWidth() + 240); //Left-most: 10; center: 240; right-most: 470
         //this.setY(getParentHeight() +480);
         this.setX(20);
-        this.setY(10);
-        this.moveTimer.start();
+        this.setY(20);
+        this.setVisible(false);
+        //this.moveTimer.start();
         
     }
     
@@ -78,32 +79,50 @@ public class SpaceShip extends Invader {
         //this.setY(newY);
     }
     
-    public void launchTimer() {
-        moveTimer = new moveTimer();
-        int time = rand.nextInt(5);  
-        
-        if (time <= 5) {
-            moveTimer.start();
-        }
-        
-    }
-    
-    public class moveTimer extends AnimationTimer {
-        private long previous;
-        int directionRand = rand.nextInt(2);
-        @Override
-        public void handle(long now) {
-            if (previous == 0) {
-                previous = now;
-            } else if (now - previous >= 15000000L && directionRand == 1) {
-                setDirection(0);
-                move();
-                previous = now;
-            } else if (now - previous >= 15000000L && directionRand == 0) {
-                setDirection(180);
-                move();
-                previous = now;
-            }
-        }  
-    }
+//    public class moveTimer extends AnimationTimer {
+//        private long previous;
+//        int directionRand = rand.nextInt(2);
+//        //int launch = rand.nextInt(2);
+//        private boolean ssWaiting = false;
+//        private long spawnTime;
+//        private Random generator = new Random();
+//        //SpaceShip spaceShip = new SpaceShip();
+//        @Override
+//        public void handle(long now) {
+//            if (previous == 0) {
+//                previous = now;
+//            } else if (now - previous >= 15000000L && directionRand == 1) {
+//                setDirection(0);
+//                move();
+//                previous = now;
+//            } else if (now - previous >= 15000000L && directionRand == 0) {
+//                setDirection(180);
+//                move();
+//                previous = now;
+//            }
+//            if(!ssWaiting) {
+//                long rand;
+//                do {
+//                    rand = generator.nextLong();
+//                } while (rand > 2 * Math.pow(10, 10));
+//                spawnTime = (long) (now + rand + (5 * Math.pow(10, 9)));
+//                ssWaiting = true;
+//            }
+//            if (ssWaiting && now >= spawnTime) {
+//                int directionChooser = generator.nextInt(2);
+//                int direction;
+//                switch (directionChooser) {
+//                    case 1:
+//                        direction = 180;
+//                        break;
+//                    case 0:
+//                        direction = 0;
+//                        break;
+//                }
+//                SpaceShip s = new SpaceShip();
+//                gamePane.getChildren().add(s);
+//                ssWaiting = false;
+//            }
+//        }  
+//    }
 }
