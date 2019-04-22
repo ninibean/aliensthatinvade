@@ -79,13 +79,18 @@ public class SpaceShip extends Invader {
     }
     
     public void launchTimer() {
-        int time = rand.nextInt(3000000);
+        moveTimer = new moveTimer();
+        int time = rand.nextInt(5);  
+        
+        if (time <= 5) {
+            moveTimer.start();
+        }
         
     }
     
     public class moveTimer extends AnimationTimer {
         private long previous;
-        int directionRand = rand.nextInt(1);
+        int directionRand = rand.nextInt(2);
         @Override
         public void handle(long now) {
             if (previous == 0) {
