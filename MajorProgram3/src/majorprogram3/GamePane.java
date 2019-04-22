@@ -9,6 +9,7 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javax.management.timer.Timer;
 
 /**
  *
@@ -17,6 +18,7 @@ import javafx.scene.layout.BorderPane;
 public class GamePane extends BorderPane {
     private ActionPane actionPane;
     private CmdCenter cmdCenter;
+    private SpaceShip ship;
     
     public GamePane() {
         actionPane = new ActionPane();
@@ -31,6 +33,9 @@ public class GamePane extends BorderPane {
         
         timer.start();
         
+        ship = new SpaceShip();
+        actionPane.getChildren().add(ship);
+        
         
     }
     
@@ -43,20 +48,30 @@ public class GamePane extends BorderPane {
                     case LEFT: 
                         //System.out.println("Left key pressed");
                         cmdCenter.setSpeed(15);
+                        if (cmdCenter.getX() < 10 ){
+                            cmdCenter.setDirection(0);
+                        } else {
                         cmdCenter.setDirection(180);
+                        }
                         cmdCenter.move(); 
                         System.out.println("L");
                         break;
                     case RIGHT:
                         //System.out.println("Right key pressed");
                         cmdCenter.setSpeed(15);
+                        if (cmdCenter.getX() > 470) {
+                            cmdCenter.setDirection(180);
+                        } else {
                         cmdCenter.setDirection(0);
+                        }
                         cmdCenter.move();
                         System.out.println("R");
                         break;
                     case SPACE:
                         //System.out.println("Space key pressed");
-                        cmdCenter.fireProjectile();
+                        if (cmdCenter.projectile.getY() < 0) {
+                            cmdCenter.fireProjectile();
+                        }
                         //cmdCenter.projectile.setSpeed(-15);
                         //cmdCenter.projectile.setDirection(90);
                          System.out.println("S");
@@ -77,4 +92,6 @@ public class GamePane extends BorderPane {
             }
         }
     }
+    
+    
 }
