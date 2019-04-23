@@ -91,16 +91,10 @@ public class GamePane extends BorderPane {
         private long previousShip;
         int directionRand = rand.nextInt(2);
         private boolean ssWaiting = false;
+        private boolean shipCollision = false;
         private long spawnTime;
         private Random generator = new Random();
         private GamePane gp;
-       // private SpaceShip ship = new SpaceShip();
-
-//        public MyTimer(GamePane gp) {
-//            this.gp = gp;
-//            gp.getChildren().add(ship);
-//        }
-
         //@Override
         public void handle(long now) {
             if (now - previous >= 2500000L) { //L makes a large number passable as an int value
@@ -114,15 +108,10 @@ public class GamePane extends BorderPane {
                 ship.move();
                 previousShip = now;
            } 
-            //else if (now - previous >= 15000000L && directionRand == 0) {
-//                ship.setDirection(180);
-//                ship.move();
-//                previous = now;
-//            }
 
             if (!ssWaiting) {
                 //ship.setVisible(false);
-                long rand = generator.nextInt(1);
+                long rand = generator.nextInt(25);
                 spawnTime = (long) (now + (rand + 5) * (Math.pow(10, 9)));
                 ssWaiting = true;
             }
@@ -143,6 +132,13 @@ public class GamePane extends BorderPane {
                 System.out.println(ship.isVisible());
                 ssWaiting = false;
             }
+            if (ship.getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())){
+                System.out.println("BOOM");
+                ship.setVisible(false);
+                ssWaiting = false;
+            }
+             
         }
+        
     }
 }
