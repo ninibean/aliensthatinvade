@@ -133,9 +133,13 @@ public class GamePane extends BorderPane {
                 ssWaiting = false;
             }
             if (ship.getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())){
-                System.out.println("BOOM");
+                
                 ship.setVisible(false);
+                System.out.println("BOOM");
+                cmdCenter.projectile.setVisible(false);
                 ssWaiting = false;
+            } else {
+                cmdCenter.projectile.setVisible(true);
             }
              
         }
