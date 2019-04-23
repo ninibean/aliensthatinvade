@@ -49,6 +49,24 @@ public class SpaceShip extends Invader {
         
     }
     
+    public void setRandomPointValue() {
+        int point = rand.nextInt(3);
+        switch (point) {
+            case 1:
+                this.setPointValue(100);
+                System.out.println("100");
+                break;
+            case 2:
+                this.setPointValue(200);
+                System.out.println("200");
+                break;
+            default:
+                this.setPointValue(300);
+                System.out.println("300");
+                break;
+        }
+    }
+    
 //    public void startMoveTimer() {
 //        moveTimer.start();
 //    }

@@ -7,7 +7,9 @@ package majorprogram3;
 
 import java.util.Random;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javax.management.timer.Timer;
@@ -24,25 +26,31 @@ public class GamePane extends BorderPane {
     private StatusPane sPane;
     private ControlPane cPane;
     private Random rand = new Random();
+    private MyTimer timer;
 
     public GamePane() {
         actionPane = new ActionPane();
-        MyTimer timer = new MyTimer();
+        timer = new MyTimer();
         cmdCenter = new CmdCenter(actionPane);
         MyCmdHandler mch = new MyCmdHandler();
+        ControlPaneHandler cph = new ControlPaneHandler();
         ship = new SpaceShip();
         sPane = new StatusPane();
         cPane = new ControlPane();
         
         this.setOnKeyPressed(mch);
         this.getChildren().add(actionPane);
-
-        timer.start();
+        //cPane.setFocusTraversable(false);
+        cPane.getExit().setOnAction(cph);
+        cPane.getReset().setOnAction(cph);
+        cPane.getStart().setOnAction(cph);
+ 
+        
 
         actionPane.getChildren().add(ship);
         actionPane.getChildren().add(sPane);
         actionPane.getChildren().add(cPane);
-        
+        // timer.start();
         //this.setCenter(cmdCenter);
         this.setTop(sPane);
         this.setBottom(cPane);
@@ -142,9 +150,10 @@ public class GamePane extends BorderPane {
                 ssWaiting = false;
             }
             if (ship.getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())){
+                ship.setRandomPointValue();
                 ship.setVisible(false);
-                System.out.println("BOOM");
                 cmdCenter.projectile.setVisible(false);
+                System.out.println("BOOM");
                 ssWaiting = false;
             } else {
                 cmdCenter.projectile.setVisible(true);
@@ -152,5 +161,23 @@ public class GamePane extends BorderPane {
              
         }
         
+    }
+    
+    public class ControlPaneHandler implements EventHandler<ActionEvent> {
+        //GamePane gp = new GamePane();
+        MyCmdHandler mch = new MyCmdHandler();
+        @Override
+        public void handle(ActionEvent event) {
+            Button butt = (Button) event.getSource();
+            if (butt.getText().equals("Start")) {
+                timer.start();
+                //cmdCenter.setOnKeyPressed(mch);
+                //butt.setFocusTraversable(false);
+            } else if (butt.getText().equals("Reset")) {
+                //gp.r
+            } else if (butt.getText().equals("Exit")) {
+                System.exit(-1);
+            }
+        }
     }
 }
