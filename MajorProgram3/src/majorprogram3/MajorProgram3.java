@@ -29,7 +29,6 @@ public class MajorProgram3 extends Application {
         
         Scene scene = new Scene(gamePane, 500, 500);
         //gamePane.setStyle("-fx-background-color: black;");
-        
         primaryStage.setTitle("Aliens that Invade");
         primaryStage.setScene(scene);
         primaryStage.show();

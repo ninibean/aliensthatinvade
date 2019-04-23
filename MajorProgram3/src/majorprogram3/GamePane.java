@@ -21,23 +21,32 @@ public class GamePane extends BorderPane {
     private ActionPane actionPane;
     private CmdCenter cmdCenter;
     private SpaceShip ship;
+    private StatusPane sPane;
+    private ControlPane cPane;
     private Random rand = new Random();
 
     public GamePane() {
         actionPane = new ActionPane();
         MyTimer timer = new MyTimer();
-        // this.setCenter(actionPane);
-
         cmdCenter = new CmdCenter(actionPane);
-
         MyCmdHandler mch = new MyCmdHandler();
+        ship = new SpaceShip();
+        sPane = new StatusPane();
+        cPane = new ControlPane();
+        
         this.setOnKeyPressed(mch);
         this.getChildren().add(actionPane);
 
         timer.start();
 
-        ship = new SpaceShip();
         actionPane.getChildren().add(ship);
+        actionPane.getChildren().add(sPane);
+        actionPane.getChildren().add(cPane);
+        
+        //this.setCenter(cmdCenter);
+        this.setTop(sPane);
+        this.setBottom(cPane);
+        
 
     }
 
@@ -111,7 +120,7 @@ public class GamePane extends BorderPane {
 
             if (!ssWaiting) {
                 //ship.setVisible(false);
-                long rand = generator.nextInt(25);
+                long rand = generator.nextInt(20);
                 spawnTime = (long) (now + (rand + 5) * (Math.pow(10, 9)));
                 ssWaiting = true;
             }
@@ -133,7 +142,6 @@ public class GamePane extends BorderPane {
                 ssWaiting = false;
             }
             if (ship.getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())){
-                
                 ship.setVisible(false);
                 System.out.println("BOOM");
                 cmdCenter.projectile.setVisible(false);

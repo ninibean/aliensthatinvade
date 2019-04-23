@@ -38,7 +38,7 @@ public class CmdCenter extends GameObject {
         //this.setX(getParentWidth() + 240); //Left-most: 10; center: 240; right-most: 470
         //this.setY(getParentHeight() +480);
         this.setX(240);
-        this.setY(480);
+        this.setY(450);
         actionPane.getChildren().add(this);
     }
     
