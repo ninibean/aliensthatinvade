@@ -168,6 +168,8 @@ public class GamePane extends BorderPane {
                    if (hord.aliens[i][j].isVisible() && cmdCenter.projectile.isVisible()) {
                        if (hord.aliens[i][j].getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())) {
                            cmdCenter.projectile.setVisible(false);
+                           //hord.aliens[i][j].getPointValue();
+                           sPane.getStatusLabel().setText("Points: " + hord.aliens[i][j].getPointValue());
                            hord.aliens[i][j].setVisible(false);
                            break;
                        } 
