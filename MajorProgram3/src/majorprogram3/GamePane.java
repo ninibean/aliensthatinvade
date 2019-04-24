@@ -188,10 +188,10 @@ public class GamePane extends BorderPane {
                             }
                         }
                         counter++;
-                        System.out.println(counter);
+                        //System.out.println(counter);
 
                         if (counter % 4 == 0) {
-                            System.out.println(speed);
+                            //System.out.println(speed);
                             this.speed += .5;
                             hord.aliens[i][j].setSpeed(speed);
                         }
@@ -204,13 +204,17 @@ public class GamePane extends BorderPane {
                         }
                         counter++;
                         //hord.aliens[q][w].move();
-                        System.out.println(counter);
+                        //System.out.println(counter);
                         if (counter % 4 == 0) {
-                            System.out.println(speed);
+                            //System.out.println(speed);
                             this.speed += .5;
                             hord.aliens[i][j].setSpeed(speed);
-                            System.out.println(hord.aliens[i][j].getSpeed());
+                            //System.out.println(hord.aliens[i][j].getSpeed());
                         }
+                        if (hord.aliens[i][j].getY() > 580) {
+                            hord.aliens[i][j].setSpeed(0);
+                        }
+
                     }
                     if (hord.aliens[i][j].isVisible() && cmdCenter.projectile.isVisible()) {
                         if (hord.aliens[i][j].getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())) {
