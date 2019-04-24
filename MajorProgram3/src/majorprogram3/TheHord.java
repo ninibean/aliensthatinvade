@@ -14,12 +14,12 @@ import javafx.scene.image.Image;
  */
 public class TheHord {
 
-    private Alien[][] aliens;
+    Alien[][] aliens;
     private double direction;
     private double lastDirection;
     private int numLiving;
     private boolean atEdge;
-     ActionPane actionPane;
+    private ActionPane actionPane;
     private Image alienSprites;
 
     public TheHord(ActionPane actionPane) {
@@ -50,7 +50,7 @@ public class TheHord {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 11; j++) {
                 if (i == 0 || i == 1) {
-                    Alien a = new Alien(actionPane, alienSprites, 1);
+                    Alien a = new Alien(actionPane, getAlienSprites(), 1);
                     aliens[i][j] = a;
                     a.setX(x1);
                     a.setY(y1);
@@ -64,7 +64,7 @@ public class TheHord {
                         y1 = 180;
                     }
                 } else if (i == 2 || i == 3) {
-                    Alien a = new Alien(actionPane, alienSprites, 2);
+                    Alien a = new Alien(actionPane, getAlienSprites(), 2);
                     aliens[i][j] = a;
                     a.setX(x2);
                     a.setY(y2);
@@ -78,7 +78,7 @@ public class TheHord {
                         y2 = 120;
                     }
                 } else if (i == 4) {
-                    Alien a = new Alien(actionPane, alienSprites, 3);
+                    Alien a = new Alien(actionPane, getAlienSprites(), 3);
                     aliens[i][j] = a;
                     a.setX(x3);
                     a.setY(y3);
@@ -86,7 +86,7 @@ public class TheHord {
                     //a.setVisible(true);
                     a.move();
                     x3 += 35;
-//                    r3 += 1;
+                    r3 += 1;
 //                    if(r1 == 11) {
 //                        x2 = 90;
 //                        y2 = 180;
@@ -95,5 +95,99 @@ public class TheHord {
             }
         }
         
+    }
+    
+//    public void move() {
+//        int speed = 3;
+//        
+//        for (int i = 0; i < 5; )
+//    }
+//    
+    public Alien getAlien(int row, int col) {
+        return aliens[row][col];
+    }
+
+    /**
+     * @return the direction
+     */
+    public double getDirection() {
+        return direction;
+    }
+
+    /**
+     * @param direction the direction to set
+     */
+    public void setDirection(double direction) {
+        this.direction = direction;
+    }
+
+    /**
+     * @return the lastDirection
+     */
+    public double getLastDirection() {
+        return lastDirection;
+    }
+
+    /**
+     * @param lastDirection the lastDirection to set
+     */
+    public void setLastDirection(double lastDirection) {
+        this.lastDirection = lastDirection;
+    }
+
+    /**
+     * @return the numLiving
+     */
+    public int getNumLiving() {
+        return numLiving;
+    }
+
+    /**
+     * @param numLiving the numLiving to set
+     */
+    public void setNumLiving(int numLiving) {
+        this.numLiving = numLiving;
+    }
+
+    /**
+     * @return the atEdge
+     */
+    public boolean isAtEdge() {
+        return atEdge;
+    }
+
+    /**
+     * @param atEdge the atEdge to set
+     */
+    public void setAtEdge(boolean atEdge) {
+        this.atEdge = atEdge;
+    }
+
+    /**
+     * @return the actionPane
+     */
+    public ActionPane getActionPane() {
+        return actionPane;
+    }
+
+    /**
+     * @param actionPane the actionPane to set
+     */
+    public void setActionPane(ActionPane actionPane) {
+        this.actionPane = actionPane;
+    }
+
+    /**
+     * @return the alienSprites
+     */
+    public Image getAlienSprites() {
+        return alienSprites;
+    }
+
+    /**
+     * @param alienSprites the alienSprites to set
+     */
+    public void setAlienSprites(Image alienSprites) {
+        this.alienSprites = alienSprites;
     }
 }

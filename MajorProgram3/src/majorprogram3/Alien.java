@@ -29,7 +29,7 @@ public class Alien extends Invader {
             this.setScaleX(1.5);
             this.setScaleY(1.5);
             this.setViewportRects(viewportRects);
-            this.setVisible(true);
+            //this.setVisible(true);
         } else if (alienType == 2) {
             this.setImage(sprites);
             Rectangle2D viewportRect = new Rectangle2D(27, 174, 23, 23);
@@ -38,7 +38,7 @@ public class Alien extends Invader {
             this.setScaleX(1.5);
             this.setScaleY(1.5);
             this.setViewportRects(viewportRects);
-            this.setVisible(true);
+            //this.setVisible(true);
         } else if (alienType == 3) {
             this.setImage(sprites);
             Rectangle2D viewportRect = new Rectangle2D(56, 174, 23, 23);
@@ -47,7 +47,7 @@ public class Alien extends Invader {
             this.setScaleX(1.5);
             this.setScaleY(1.5);
             this.setViewportRects(viewportRects);
-            this.setVisible(true);
+            //this.setVisible(true);
         }
     }
     

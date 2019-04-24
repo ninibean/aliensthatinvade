@@ -152,7 +152,7 @@ public class GamePane extends BorderPane {
                 System.out.println(ship.isVisible());
                 ssWaiting = false;
             }
-            if (ship.getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())){
+            if (ship.getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent() )){
                 ship.setRandomPointValue();
                 sPane.getStatusLabel().setText("Points: " + ship.getPointValue());
                 //sPane.setStatusLabel("Points: " + ship.getPointValue());
@@ -164,6 +164,21 @@ public class GamePane extends BorderPane {
                 cmdCenter.projectile.setVisible(true);
             }
              
+           for (int i = 0; i < 5; i++) {
+               //int[] is = hord.aliens[i];
+               for(int j = 0; j < 11; j++) {
+                   if (hord.aliens[i][j].isVisible() && cmdCenter.projectile.isVisible()) {
+                       if (hord.getAlien(i, j).getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())) {
+                           cmdCenter.projectile.setVisible(false);
+                           hord.getAlien(i, j).setVisible(false);
+                           //Alien a = new Alien()
+                       //ssWaiting = false;
+                       } else {
+                           cmdCenter.projectile.setVisible(true);
+                       }
+                   }
+               }
+           }
         }
         
     }
@@ -183,6 +198,11 @@ public class GamePane extends BorderPane {
                 timer.stop();
                 ship.setVisible(false);
                 cmdCenter.setX(240);
+                for (int i = 0; i < 5; i++) {
+                    for(int j = 0; j < 11; j++) {
+                        hord.aliens[i][j].setVisible(true);
+               }
+           }
                 //cmdCenter.disableProperty();
                 cmdCenter.projectile.setX(cmdCenter.getX());
                 sPane.getStatusLabel().setText("Points: 0");
