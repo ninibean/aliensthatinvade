@@ -27,11 +27,13 @@ public class GamePane extends BorderPane {
     private ControlPane cPane;
     private Random rand = new Random();
     private MyTimer timer;
+    private TheHord hord;
 
     public GamePane() {
         actionPane = new ActionPane();
         timer = new MyTimer();
         cmdCenter = new CmdCenter(actionPane);
+        hord = new TheHord(actionPane);
         MyCmdHandler mch = new MyCmdHandler();
         ControlPaneHandler cph = new ControlPaneHandler();
         ship = new SpaceShip();
@@ -50,6 +52,7 @@ public class GamePane extends BorderPane {
         actionPane.getChildren().add(ship);
         actionPane.getChildren().add(sPane);
         actionPane.getChildren().add(cPane);
+        //actionPane.getChildren().add(hord);
         // timer.start();
         //this.setCenter(cmdCenter);
         this.setTop(sPane);
