@@ -16,7 +16,7 @@ import javafx.scene.image.Image;
 public class Projectile extends GameObject {
     
     public Projectile(ActionPane actionPane) {
-        this.setVisible(false);
+        //this.setVisible(false);
         
         this.setSpeed(-15);
         this.setDirection(90);

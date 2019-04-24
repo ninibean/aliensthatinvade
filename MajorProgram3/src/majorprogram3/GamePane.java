@@ -160,22 +160,17 @@ public class GamePane extends BorderPane {
                 cmdCenter.projectile.setVisible(false);
                 System.out.println("BOOM");
                 ssWaiting = false;
-            } else {
-                cmdCenter.projectile.setVisible(true);
             }
              
            for (int i = 0; i < 5; i++) {
                //int[] is = hord.aliens[i];
                for(int j = 0; j < 11; j++) {
                    if (hord.aliens[i][j].isVisible() && cmdCenter.projectile.isVisible()) {
-                       if (hord.getAlien(i, j).getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())) {
+                       if (hord.aliens[i][j].getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())) {
                            cmdCenter.projectile.setVisible(false);
-                           hord.getAlien(i, j).setVisible(false);
-                           //Alien a = new Alien()
-                       //ssWaiting = false;
-                       } else {
-                           cmdCenter.projectile.setVisible(true);
-                       }
+                           hord.aliens[i][j].setVisible(false);
+                           break;
+                       } 
                    }
                }
            }
