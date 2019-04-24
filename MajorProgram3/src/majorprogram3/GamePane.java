@@ -109,12 +109,15 @@ public class GamePane extends BorderPane {
 
         private long previous = 0;
         private long previousShip;
+        private long previousHord;
         int directionRand = rand.nextInt(2);
         private boolean ssWaiting = false;
         private boolean shipCollision = false;
         private long spawnTime;
         private Random generator = new Random();
         private GamePane gp;
+        private int direction;
+        private int speed;
         //@Override
         public void handle(long now) {
             if (now - previous >= 2500000L) { //L makes a large number passable as an int value
@@ -161,17 +164,42 @@ public class GamePane extends BorderPane {
                 System.out.println("BOOM");
                 ssWaiting = false;
             }
-             
+            
+           int points = 0;
            for (int i = 0; i < 5; i++) {
                //int[] is = hord.aliens[i];
                for(int j = 0; j < 11; j++) {
+                   //speed = 0.5;
+                   hord.aliens[i][j].setDirection(direction);
+                   hord.aliens[i][j].setSmooth(true);
+                   hord.aliens[i][j].setSpeed(2);
+                   hord.aliens[i][j].move();
+                   if (direction == 0 && hord.aliens[0][10].getX() > 480 && hord.aliens[1][10].getX() > 480) {
+                       direction = 180;
+                       for (int q = 0; q < 5; q++) {
+                           for (int w = 0; w < 11; w++) {
+                               hord.aliens[q][w].setY(hord.aliens[q][w].getY() + 10);
+                               //hord.aliens[q][w].move();
+                           }
+                       }
+                   } else if (direction == 180 && hord.aliens[0][0].getX() < 0 && hord.aliens[1][0].getX() < 0) {
+                       direction = 0;
+                       for (int q = 0; q < 5; q++) {
+                           for (int w = 0; w < 11; w++) {
+                               hord.aliens[q][w].setY(hord.aliens[q][w].getY() + 10);
+                               //hord.aliens[q][w].move();
+                           }
+                       }
+                   }
                    if (hord.aliens[i][j].isVisible() && cmdCenter.projectile.isVisible()) {
                        if (hord.aliens[i][j].getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())) {
                            cmdCenter.projectile.setVisible(false);
-                           //hord.aliens[i][j].getPointValue();
-                           sPane.getStatusLabel().setText("Points: " + hord.aliens[i][j].getPointValue());
+                           points += hord.aliens[i][j].getPointValue();
+                           sPane.getStatusLabel().setText("Points: " + points);
+                           // int currentPoints = sPane.getPoints();
+                           // currentPoints += Integer.parseInt(sPane.getStatusLabel().getText());
                            hord.aliens[i][j].setVisible(false);
-                           break;
+                           //break;
                        } 
                    }
                }

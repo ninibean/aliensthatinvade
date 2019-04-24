@@ -97,12 +97,17 @@ public class TheHord {
         
     }
     
-//    public void move() {
-//        int speed = 3;
-//        
-//        for (int i = 0; i < 5; )
-//    }
-//    
+    public void move() {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 11; j++) {
+                aliens[i][j].setSpeed(3);
+                double newX = aliens[i][j].getX() + aliens[i][j].getSpeed() * Math.cos(Math.toRadians(getDirection()));
+                double newY = aliens[i][j].getY() + aliens[i][j].getSpeed()* Math.sin(Math.toRadians(getDirection()));
+                aliens[i][j].setX(newX);
+                aliens[i][j].setY(newY);
+            }
+        }
+    }
     public Alien getAlien(int row, int col) {
         return aliens[row][col];
     }
