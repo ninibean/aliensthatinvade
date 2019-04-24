@@ -151,6 +151,8 @@ public class GamePane extends BorderPane {
             }
             if (ship.getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())){
                 ship.setRandomPointValue();
+                sPane.getStatusLabel().setText("Points: " + ship.getPointValue());
+                //sPane.setStatusLabel("Points: " + ship.getPointValue());
                 ship.setVisible(false);
                 cmdCenter.projectile.setVisible(false);
                 System.out.println("BOOM");
@@ -171,10 +173,16 @@ public class GamePane extends BorderPane {
             Button butt = (Button) event.getSource();
             if (butt.getText().equals("Start")) {
                 timer.start();
+                //sPane.getStatusLabel().setText("Points");
                 //cmdCenter.setOnKeyPressed(mch);
                 //butt.setFocusTraversable(false);
             } else if (butt.getText().equals("Reset")) {
-                //gp.r
+                timer.stop();
+                ship.setVisible(false);
+                cmdCenter.setX(240);
+                //cmdCenter.disableProperty();
+                cmdCenter.projectile.setX(cmdCenter.getX());
+                sPane.getStatusLabel().setText("Points: 0");
             } else if (butt.getText().equals("Exit")) {
                 System.exit(-1);
             }

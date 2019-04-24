@@ -31,6 +31,8 @@ public class ControlPane extends HBox {
         
         this.getChildren().addAll(start, reset, exit);
         start.setFocusTraversable(false);
+        reset.setFocusTraversable(false);
+        exit.setFocusTraversable(false);
         this.setAlignment(Pos.CENTER);
     }
     

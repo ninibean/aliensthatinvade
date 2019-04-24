@@ -15,8 +15,11 @@ import javafx.scene.paint.Color;
  */
 public class StatusPane extends HBox {
     private Label statusLabel;
+    private int points;
+    private Label pointsLabel;
     public StatusPane() {
-        statusLabel = new Label ("Points: ");
+        int points = 0;
+        statusLabel = new Label ("Points: " + points);
         statusLabel.setTextFill(Color.WHITE);
         this.getChildren().add(statusLabel);
     }
@@ -33,5 +36,19 @@ public class StatusPane extends HBox {
      */
     public void setStatusLabel(Label statusLabel) {
         this.statusLabel = statusLabel;
+    }
+
+    /**
+     * @return the points
+     */
+    public int getPoints() {
+        return points;
+    }
+
+    /**
+     * @param points the points to set
+     */
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
