@@ -114,7 +114,7 @@ public class GamePane extends BorderPane {
         private Random generator = new Random();
         private GamePane gp;
         private int direction;
-        private double speed = 2;
+        private double speed = 1;
         private int counter = 0;
 
         //@Override
@@ -133,7 +133,7 @@ public class GamePane extends BorderPane {
 
             if (!ssWaiting) {
                 //ship.setVisible(false);
-                long rand = generator.nextInt(20);
+                long rand = generator.nextInt(15);
                 spawnTime = (long) (now + (rand + 5) * (Math.pow(10, 9)));
                 ssWaiting = true;
             }
@@ -192,7 +192,7 @@ public class GamePane extends BorderPane {
 
                         if (counter % 4 == 0) {
                             //System.out.println(speed);
-                            this.speed += .5;
+                            this.speed += .2;
                             hord.aliens[i][j].setSpeed(speed);
                         }
                     } else if (direction == 180 && hord.aliens[i][j].getX() < 0 && hord.aliens[i][j].getX() < 0) {
@@ -207,12 +207,9 @@ public class GamePane extends BorderPane {
                         //System.out.println(counter);
                         if (counter % 4 == 0) {
                             //System.out.println(speed);
-                            this.speed += .5;
+                            this.speed += .2;
                             hord.aliens[i][j].setSpeed(speed);
                             //System.out.println(hord.aliens[i][j].getSpeed());
-                        }
-                        if (hord.aliens[i][j].getY() > 580) {
-                            hord.aliens[i][j].setSpeed(0);
                         }
 
                     }
