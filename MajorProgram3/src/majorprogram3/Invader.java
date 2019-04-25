@@ -9,7 +9,7 @@ package majorprogram3;
  *
  * @author patte
  */
-public abstract class Invader {
+public abstract class Invader extends GameObject {
     private int pointValue; //points awarded
     
     public Invader() {
