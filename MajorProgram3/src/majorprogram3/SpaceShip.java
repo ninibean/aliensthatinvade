@@ -21,6 +21,7 @@ public class SpaceShip extends Invader {
     private Timer launchTimer; //when the ship is launhed
     private GamePane gamePane;
     private Random rand = new Random();
+    private int point;
     
     public SpaceShip() {
         //moveTimer = new moveTimer();
@@ -47,6 +48,26 @@ public class SpaceShip extends Invader {
         this.setVisible(false);
         //this.moveTimer.start();
         
+    }
+    
+    public void setRandomPointValue() {
+        int point = rand.nextInt(3);
+        switch (point) {
+            case 1:
+                this.setPointValue(100);
+                System.out.println("100");
+                break;
+            case 2:
+                this.setPointValue(200);
+                System.out.println("200");
+                break;
+            case 3:
+                this.setPointValue(300);
+                System.out.println("300");
+                break;
+            default:
+                break;
+        }
     }
     
 //    public void startMoveTimer() {
