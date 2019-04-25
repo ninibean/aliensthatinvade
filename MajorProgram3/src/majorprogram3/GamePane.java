@@ -27,34 +27,34 @@ public class GamePane extends BorderPane {
     private ControlPane cPane;
     private Random rand = new Random();
     private MyTimer timer;
+    private TheHord hord;
 
     public GamePane() {
         actionPane = new ActionPane();
         timer = new MyTimer();
         cmdCenter = new CmdCenter(actionPane);
+        hord = new TheHord(actionPane);
         MyCmdHandler mch = new MyCmdHandler();
         ControlPaneHandler cph = new ControlPaneHandler();
         ship = new SpaceShip();
         sPane = new StatusPane();
         cPane = new ControlPane();
-        
+
         this.setOnKeyPressed(mch);
         this.getChildren().add(actionPane);
         //cPane.setFocusTraversable(false);
         cPane.getExit().setOnAction(cph);
         cPane.getReset().setOnAction(cph);
         cPane.getStart().setOnAction(cph);
- 
-        
 
         actionPane.getChildren().add(ship);
         actionPane.getChildren().add(sPane);
         actionPane.getChildren().add(cPane);
+        //actionPane.getChildren().add(hord);
         // timer.start();
         //this.setCenter(cmdCenter);
         this.setTop(sPane);
         this.setBottom(cPane);
-        
 
     }
 
@@ -106,12 +106,17 @@ public class GamePane extends BorderPane {
 
         private long previous = 0;
         private long previousShip;
+        private long previousHord;
         int directionRand = rand.nextInt(2);
         private boolean ssWaiting = false;
         private boolean shipCollision = false;
         private long spawnTime;
         private Random generator = new Random();
         private GamePane gp;
+        private int direction;
+        private double speed = 1;
+        private int counter = 0;
+
         //@Override
         public void handle(long now) {
             if (now - previous >= 2500000L) { //L makes a large number passable as an int value
@@ -124,11 +129,11 @@ public class GamePane extends BorderPane {
                 //ship.setDirection(0);
                 ship.move();
                 previousShip = now;
-           } 
+            }
 
             if (!ssWaiting) {
                 //ship.setVisible(false);
-                long rand = generator.nextInt(20);
+                long rand = generator.nextInt(15);
                 spawnTime = (long) (now + (rand + 5) * (Math.pow(10, 9)));
                 ssWaiting = true;
             }
@@ -149,7 +154,7 @@ public class GamePane extends BorderPane {
                 System.out.println(ship.isVisible());
                 ssWaiting = false;
             }
-            if (ship.getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())){
+            if (ship.getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())) {
                 ship.setRandomPointValue();
                 sPane.getStatusLabel().setText("Points: " + ship.getPointValue());
                 //sPane.setStatusLabel("Points: " + ship.getPointValue());
@@ -157,17 +162,79 @@ public class GamePane extends BorderPane {
                 cmdCenter.projectile.setVisible(false);
                 System.out.println("BOOM");
                 ssWaiting = false;
-            } else {
-                cmdCenter.projectile.setVisible(true);
             }
-             
+
+            int points = 0;
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 11; j++) {
+                    hord.aliens[i][j].setSpeed(speed);
+
+                }
+            }
+            for (int i = 0; i < 5; i++) {
+                //int[] is = hord.aliens[i];
+                for (int j = 0; j < 11; j++) {
+                    //speed = 0.5;
+                    hord.aliens[i][j].setDirection(direction);
+                    hord.aliens[i][j].setSmooth(true);
+                    hord.aliens[i][j].move();
+                    if (direction == 0 && hord.aliens[i][j].getX() > 480 && hord.aliens[1][j].getX() > 480) {
+                        direction = 180;
+                        for (int q = 0; q < 5; q++) {
+                            for (int w = 0; w < 11; w++) {
+                                hord.aliens[q][w].setY(hord.aliens[q][w].getY() + 10);
+                                //hord.aliens[q][w].move();
+
+                            }
+                        }
+                        counter++;
+                        //System.out.println(counter);
+
+                        if (counter % 4 == 0) {
+                            //System.out.println(speed);
+                            this.speed += .2;
+                            hord.aliens[i][j].setSpeed(speed);
+                        }
+                    } else if (direction == 180 && hord.aliens[i][j].getX() < 0 && hord.aliens[i][j].getX() < 0) {
+                        direction = 0;
+                        for (int q = 0; q < 5; q++) {
+                            for (int w = 0; w < 11; w++) {
+                                hord.aliens[q][w].setY(hord.aliens[q][w].getY() + 10);
+                            }
+                        }
+                        counter++;
+                        //hord.aliens[q][w].move();
+                        //System.out.println(counter);
+                        if (counter % 4 == 0) {
+                            //System.out.println(speed);
+                            this.speed += .2;
+                            hord.aliens[i][j].setSpeed(speed);
+                            //System.out.println(hord.aliens[i][j].getSpeed());
+                        }
+
+                    }
+                    if (hord.aliens[i][j].isVisible() && cmdCenter.projectile.isVisible()) {
+                        if (hord.aliens[i][j].getBoundsInParent().intersects(cmdCenter.projectile.getBoundsInParent())) {
+                            cmdCenter.projectile.setVisible(false);
+                            points += hord.aliens[i][j].getPointValue();
+                            sPane.getStatusLabel().setText("Points: " + points);
+                            // int currentPoints = sPane.getPoints();
+                            // currentPoints += Integer.parseInt(sPane.getStatusLabel().getText());
+                            hord.aliens[i][j].setVisible(false);
+                            //break;
+                        }
+                    }
+                }
+            }
         }
-        
+
     }
-    
+
     public class ControlPaneHandler implements EventHandler<ActionEvent> {
+
         //GamePane gp = new GamePane();
         MyCmdHandler mch = new MyCmdHandler();
+
         @Override
         public void handle(ActionEvent event) {
             Button butt = (Button) event.getSource();
@@ -180,6 +247,11 @@ public class GamePane extends BorderPane {
                 timer.stop();
                 ship.setVisible(false);
                 cmdCenter.setX(240);
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 11; j++) {
+                        hord.aliens[i][j].setVisible(true);
+                    }
+                }
                 //cmdCenter.disableProperty();
                 cmdCenter.projectile.setX(cmdCenter.getX());
                 sPane.getStatusLabel().setText("Points: 0");

@@ -69,27 +69,7 @@ public class SpaceShip extends Invader {
                 break;
         }
     }
-    
-//    public void startMoveTimer() {
-//        moveTimer.start();
-//    }
-//    
-//    public void stopMoveTimer() {
-//        moveTimer.stop();
-//    }
-//    
-//    public void startLaunchTimer() {
-//        launchTimer.start();
-//    }
-//    
-//    public void stopLaunchTimer() {
-//        launchTimer.stop();
-//    }
-//    
-//    public void setRandomPointValue() {
-//        //
-//        
-//    }
+
 
     @Override
     public void move() {
@@ -99,51 +79,5 @@ public class SpaceShip extends Invader {
         this.setX(newX);
         //this.setY(newY);
     }
-    
-//    public class moveTimer extends AnimationTimer {
-//        private long previous;
-//        int directionRand = rand.nextInt(2);
-//        //int launch = rand.nextInt(2);
-//        private boolean ssWaiting = false;
-//        private long spawnTime;
-//        private Random generator = new Random();
-//        //SpaceShip spaceShip = new SpaceShip();
-//        @Override
-//        public void handle(long now) {
-//            if (previous == 0) {
-//                previous = now;
-//            } else if (now - previous >= 15000000L && directionRand == 1) {
-//                setDirection(0);
-//                move();
-//                previous = now;
-//            } else if (now - previous >= 15000000L && directionRand == 0) {
-//                setDirection(180);
-//                move();
-//                previous = now;
-//            }
-//            if(!ssWaiting) {
-//                long rand;
-//                do {
-//                    rand = generator.nextLong();
-//                } while (rand > 2 * Math.pow(10, 10));
-//                spawnTime = (long) (now + rand + (5 * Math.pow(10, 9)));
-//                ssWaiting = true;
-//            }
-//            if (ssWaiting && now >= spawnTime) {
-//                int directionChooser = generator.nextInt(2);
-//                int direction;
-//                switch (directionChooser) {
-//                    case 1:
-//                        direction = 180;
-//                        break;
-//                    case 0:
-//                        direction = 0;
-//                        break;
-//                }
-//                SpaceShip s = new SpaceShip();
-//                gamePane.getChildren().add(s);
-//                ssWaiting = false;
-//            }
-//        }  
-//    }
 }
+    
